@@ -1,0 +1,640 @@
+/*---------------------------------*/
+/*BASIC SETUP*/
+/*---------------------------------*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    background-color: #fff;
+    color: #555;
+    font-family: 'Lato','Arial', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden; /*Khi scale nhỏ browser xuống 500px, nó sẽ giúp ko xuất hiện vertical scrollbar*/
+}
+
+/*---Video 47(16:00)--
+- Đối với section meals, ta dùng float nhưng nó ko chiếm diện tính trong layout vì chỉ có hình ảnh.
+- Đó phần phía dưới là section "How it work" sẽ bị đẩy lên trên mặc dù đã có margin-top.
+- cách sử lý là thêm vào .clearfix bên dứ trong phần section meals
+*/
+.clearfix{zoom: 1;}
+.clearfix::after{
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+/*---------------------------------*/
+/*REUSABLE COMPONENTS*/
+/*---------------------------------*/
+
+section{
+    padding: 80px 0;
+}
+
+/*Căn chỉnh vị trí ảnh của background*/
+header{
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), #000), url(img/hero.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.hero-text-box{ /*Căn chỉnh vị trí của thẻ tiêu đề*/
+    position: absolute;
+    width: 100%;
+    top: 30%;
+    left: 20%;
+    color: rgb(91, 76, 102);
+}
+
+
+.row{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.box{
+    padding: 1px;
+}
+
+/*------------ HEADINGS ------------*/
+h1, h2, h3{
+    font-size: 200%;
+    text-transform: uppercase;
+    word-spacing: 4px;
+}
+
+h1{
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+h2{
+    font-size: 180%;
+    word-spacing: 2px; /*khoảng cách giữa các từ*/
+    text-align: center; /*Vị trí căng chỉnh của header*/
+    margin-bottom: 30px;
+    /* border-bottom: #f0932b solid 3px; 
+    padding-bottom: 25px; */ /*có thể dùng 2 dòng này để tạo 1 đường ngang dài hoặc dùng :after như bên dưới*/
+}
+
+h2::after{
+    display: block;
+    height: 2px;
+    background-color: #f0932b;
+    content: " ";/*thành phần quan trọng khi dùng :after*/
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 30px;
+
+}
+
+h3{
+    font-size: 110%;
+    margin-bottom: 15px;
+    color: #f0932b;
+}
+
+/*------------ PARAGRAPHS ------------*/
+/*------------ video 42(07:26) ------------*/
+.long-copy{
+    line-height: 145%; /*khoảng cách giữa các dòng từ 120% đến 145%*/
+    /*Vì paragraphs hiện tại quá dài, nên ta cần phải chia thành 2 dòng và căn giữa*/
+    /*tổng 100 = 70 + 15 + 15*/
+    width: 70%;
+    margin: 0 15%;
+}
+
+.box p {
+    font-size: 90%;
+    line-height: 145%;
+}
+
+/*------------ ICONS ------------*/
+.icon-big{
+    display: block;
+    height: 50px; 
+    width: auto;
+    margin-bottom: 15px;
+    margin-left: 25%;
+}
+
+.icon-small{
+    display: inline-block;
+    height: auto; 
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+
+    /*Căn chỉnh chữ bằng với icon*/
+    /*Secrects to align text and icons*/
+    line-height: 120%;
+    vertical-align: middle;
+    margin-top: -4px;
+
+}
+
+.icon-checkmark{
+    display: inline-block;
+    width: 20px;
+    height: auto;
+}
+
+/*------------ LINKS ------------*/
+a:link,
+a:visited{
+    color: #f0932b;
+    text-decoration: none;
+    border-bottom: #f0932b solid 1px;
+    padding-bottom: 1px;
+    transition: font-weight 0.2s, color 0.2s, border-bottom 0.2s;
+}
+
+a:hover,
+a:active{
+    font-weight: bold;
+    color: #cf6d17;
+    border-bottom: transparent solid 1px;
+}
+
+/*---------------------------------*/
+/* SELECT - OPTION*/ 
+
+select{
+    color: #555;
+    font-size: 90%;
+    font-family: 'Lato','Arial', sans-serif;
+}
+
+option{
+    color: #555;
+    font-family: 'Lato','Arial', sans-serif;
+    font-size: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    
+}
+
+select:focus option:checked { 
+    background-color: #f0bb8e;
+    color: #fff;
+}
+
+/*------------ BUTTONS ------------*/
+/*Btn là ở building header - part 2*/
+
+.btn:link,
+.btn:visited,
+input[type=submit]
+{
+    display: inline-block;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-weight: 300;
+    border-radius: 200px;
+    color: #fff;
+    margin-right: 15px;
+    transition: background-color 2s, border 2s, color 2s; /* tạo hiệu ứng delay khi hover lên button */
+
+    
+}
+
+
+.btn-full:link,
+.btn-full:visited,
+input[type=submit]{
+    background-color: #f0932b;
+    border: #fff solid 1px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited{
+    border: #f0932b solid 1px;
+    color: #f0932b;
+    
+}
+
+.btn:hover,
+.btn:active,
+input[type=submit]:hover,
+input[type=submit]:active{
+    background-color: #cf6d17;
+    color: #fff;
+    font-weight: 400;
+}
+
+.btn-full:hover,
+.btn-full:active,
+input[type=submit]:link,
+input[type=submit]:visited{
+    border: #f0932b solid 1px; /*lấy màu từ https://flatuicolors.com/*/
+}
+
+.btn-ghost:hover,
+.btn-ghost:active{
+    border: #fff solid 1px;    
+}
+
+/*------------ LOGO NAVIGATION ------------*/
+/*Btn là ở building header - part 3*/
+
+.logo{
+    height: 100px;
+    width: auto;
+    float: left;
+    margin-top: 20px;
+}
+
+.main-nav{
+    float: right;
+    list-style: none;
+    margin-top: 55px;
+}
+
+.main-nav li{
+    display: inline-block;
+    margin-right: 30px;
+    margin-top: 10px;
+    padding-bottom: 8px;
+    border-bottom: solid 2px transparent;
+}
+
+.main-nav li a:link,
+.main-nav li a:visited{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 90%;
+    border-bottom: solid 2px transparent;
+    transition: border-bottom 5s; /* tạo hiệu ứng delay khi hover lên button */
+}
+
+.main-nav li:hover,
+.main-nav li:active{
+    border-bottom: #cf6d17 solid 2px;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active{
+    font-weight: bolder;
+}
+
+/*---------------------------------*/
+/* FEATURE*/
+/*---------------------------------*/
+
+.section-features .long-copy{
+    margin-bottom: 30px;
+}
+
+/*---------------------------------*/
+/* MEALS*/
+/*---------------------------------*/
+
+.section-meals{
+    padding: 0;
+}
+
+.meals-showcase{
+    list-style: none; /*Tắt gạch đầu dòng*/
+    width: 100%;
+}
+
+.meals-showcase li{
+    display: block;
+    float: left;
+    width: 25%; /*Ta cần hiển thị 4 hình --> 25% cho mỗi hình thì tổng là 100%*/
+}
+
+.meals-photo{
+    width: 100%;
+    margin: 0;
+    overflow: hidden; /*Đi với transform: scale(1.15) --> không cho thẻ con tràng ra ngoài*/
+    background-color: #000;/*chỉnh background đi với opacity*/
+}
+
+.meals-photo img{
+    opacity: 0.7; /*Làm mờ đi 0.7, để khi hover về 1 nó sẽ đẹp hơn*/
+    width: 100%;
+    height: auto;
+    margin: 1;
+    /*để phóng to hình thì scale(1.15)=115% 
+    --> khi scale nó sẽ làm cho hình lớn hơn, 
+    do đó cần cân chỉnh ở thẻ parent--> bằng overflow*/
+    transform: scale(1.15); 
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.meals-photo img:hover{
+    transform: scale(1.03); /*Khi hover ảnh nhỏ lại từ từ*/
+    opacity: 1;
+}
+
+/*---------------------------------*/
+/* HOW IT WORK?*/ 
+/*----------------VIDEO 46, 47-----------------*/
+
+.section-steps{
+    background-color: rgb(245, 241, 241);
+}
+
+.steps-box{
+    margin-top: 30px;
+}
+
+.steps-box:first-child{
+    text-align: right;
+    padding: 3%;
+}
+
+.steps-box:last-child{
+    text-align: left;
+    margin-top: 70px;
+}
+
+.app-screen{
+    width: 40%;
+}
+
+.works-step{
+    margin-bottom: 50px;
+}
+
+.works-step:last-of-type{ /*phần tử cuối cùng của của works-step*/
+    margin-bottom: 80px;
+}
+
+/*Vẽ vòng tròn và số*/
+.works-step div{
+    color: #f0932b;
+    border: 2px solid #f0932b;
+    display: inline-block; /*đảm bảo các phần tử không buộc ngắt dòng, và do đó, số có thể sát cạnh với văn bản.*/
+    border-radius: 50%;
+    height: 55px;
+    width: 55px;
+    text-align: center;
+    padding: 5px;
+    float: left;
+    font-size: 150%;
+    margin-right: 20px;
+}
+
+.btn-app img{
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.btn-app:link,
+.btn-app:visited{
+    border: 0;
+}
+/*---------------------------------*/
+/* CITIES*/ 
+/*----------------VIDEO 48, 49-----------------*/
+.box img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.city-feature{
+    margin-top: 5px;
+}
+
+/*---------------------------------*/
+/* TESTIMONTIAL*/ 
+/*----------------VIDEO 48, 49-----------------*/
+.section-testimonials{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), #000), url(img/back-customers.jpg);
+    background-size: cover;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+blockquote {
+    padding: 2%;
+    font-style: italic; /*Làm được điều này là nhờ có import google font ở html file*/
+    line-height: 145%;
+    margin-top: 40px;
+    position: relative;
+}
+
+cite {
+    font-size: 90%;
+    margin-top: 25px;
+    display: block;
+}
+
+blockquote::before{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    content: "\201C";
+    font-size: 300%;
+    display: block;
+    /*Chỉnh vị trí dùng position*/
+    position: absolute;
+    top: 0;
+    left: -20px;
+}
+
+cite img{
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+    margin: 10px;
+    vertical-align: middle;
+}
+
+
+/*---------------------------------*/
+/* SIGN UP*/ 
+/*----------------VIDEO 48, 49-----------------*/
+
+.section-plans{
+    background-color: rgb(245, 241, 241);
+}
+
+.plan-box{
+    background-color: #fff;
+    border-radius: 10px;
+    width: 90%;
+    margin-left: 5%;
+    box-shadow: 0 2px 10px #555; /*box-shadow: x-ofset y-ofset blur color*/
+}
+
+.plan-box div:first-child{
+    background-color: rgb(213, 217, 226);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.plan-box div:last-child{
+    text-align: center;
+    border: 0;
+}
+
+.plan-box div{
+    padding: 15px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.plan-price {
+    font-size: 300%;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.plan-price-meal{
+    font-size: 80%;
+}
+
+.plan-price span{
+    font-size: 30%;
+    font-weight: 500;
+}
+
+.plan-box ul{
+    list-style: none;
+}
+
+.plan-box ul li{
+    padding: 5px 0;
+}
+
+/*---------------------------------*/
+/* FORM */ 
+/*----------------VIDEO 54, 55-----------------*/
+/*----------------VIDEO 54, 55-----------------*/
+
+.contact-form{ /*bóp nhỏ diện tích lại*/
+    width: 60%;
+    margin: 0 auto;
+}
+
+input[type=text],
+input[type=email],
+select,
+textarea{
+    width: 100%;
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 2px #555;
+    color: #555;
+    font-size: 90%;
+    font-family: 'Lato','Arial', sans-serif;
+}
+
+/* label{
+    text-shadow: 0 0.5px 0.5px #555;
+    vertical-align: bottom;
+} */
+
+textarea{
+    height: 100px;
+}
+
+input[type=checkbox]{
+    margin: 10px 5px 10px 0;
+}
+
+*:focus{outline: none;} /*Để tắt màu xanh khi focus*/
+
+/*---------------------------------*/
+/* Footer */ 
+/*----------------VIDEO 56, 57-----------------*/
+
+footer{ /*bóp nhỏ diện tích lại*/
+    background-color: #333;
+    padding: 50px;
+}
+
+.footer-nav {
+    list-style: none;
+    float: left;
+}
+
+.social-links{
+    list-style: none;
+    float: right;
+}
+
+.footer-nav li,
+.social-links li{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-links li a,
+.social-links li a:link
+.social-links li a:visited{
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+    color: #888;
+    transition: font-weight 0.2s, color 0.2s;
+}
+
+
+.footer-nav li:last-child,
+.social-links li:last-child{
+    margin-right: 0;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active,
+.social-links li a:active
+.social-links li a:hover{
+    font-weight: bolder;
+    color: #fff;
+}
+
+footer p{
+    color: #888;
+    text-align: center;
+    font-size: 90%;
+    margin-top: 30px;
+}
+
+.logo-social{
+    display: inline-block;
+    width: 30px;
+    height: auto;
+    margin-right: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.logo-facebook:hover,
+.logo-facebook:active{
+    background-color: #1877f2;
+}
+
+.logo-twitter:hover,
+.logo-twitter:active{
+    background-color: #1da1f2;
+}
+
+.logo-google:hover,
+.logo-google:active{
+    background-color: #4285f4;
+}
+
+.logo-instagram:hover,
+.logo-instagram:active{
+    background-color: #c32aa3;
+}
+
