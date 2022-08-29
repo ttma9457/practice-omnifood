@@ -52,7 +52,7 @@ header{
 
 .hero-text-box{ /*Căn chỉnh vị trí của thẻ tiêu đề*/
     position: absolute;
-    width: 100%;
+    width: 1140px;
     top: 30%;
     left: 20%;
     color: rgb(91, 76, 102);
@@ -257,6 +257,16 @@ input[type=submit]:visited{
     margin-top: 20px;
 }
 
+.logo-black{
+    display: none;
+    height: 50px;
+    width: auto;
+    float: left;
+    margin: 5px 0;
+
+}
+
+/*Main navigation */
 .main-nav{
     float: right;
     list-style: none;
@@ -289,6 +299,35 @@ input[type=submit]:visited{
 .main-nav li a:hover,
 .main-nav li a:active{
     font-weight: bolder;
+}
+
+/*Sticky-navi*/
+.sticky .main-nav{
+    margin-top: 7px;
+}
+
+.sticky{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(236, 230, 230, 0.897);
+    box-shadow: 0 5px 5px #665643;
+    z-index: 9999; /*Có tác dụng là luôn luôn hiển thị, nếu ko có thì đến phần meal section sẽ bị ẩn. Giá trị 9999 là cao nhất*/
+}
+
+.sticky .main-nav li a:link,
+.sticky .main-nav li a:visited{
+    padding: 0;
+    color: rgb(100, 90, 90);
+}
+
+.sticky .logo{
+    display: none;
+}
+
+.sticky .logo-black{
+    display: block;
 }
 
 /*---------------------------------*/
@@ -638,3 +677,23 @@ footer p{
     background-color: #c32aa3;
 }
 
+/*---------------------------------*/
+/* ANIMATIONS*/ 
+/*----------------VIDEO 66-----------------*/
+
+/*Muốn class này biết mất trước khi sử dụng hiệu ứng*/
+.js--wp-1,
+.js--wp-2,
+.js--wp-3,
+.js--wp-4{ 
+    /* display: none; <--- không work tại đây */
+    opacity: 0;
+    animation-duration: 1s;
+}
+
+.js--wp-1.animate__animated,
+.js--wp-2.animate__animated,
+.js--wp-3.animate__animated,
+.js--wp-4.animate__animated{
+    opacity: 1; /*Hiển thị lại*/
+}
