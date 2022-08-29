@@ -76,7 +76,40 @@
         margin: 0 0 4% 0;
     } /*Nó giúp hủy bỏ column, tất cả sẽ xếp trồng lên nhau*/
 
-    .main-nav{display: none;}
+    .main-nav{
+        display: none;
+        float: left;
+        margin-top: 30px;
+        margin-left: 40px;
+    }
+
+    .main-nav li{
+        display: block;
+        padding-bottom: 0;
+    }
+
+    .main-nav li a:visited,
+    .main-nav li a:link{
+        display: block;
+        border: 0;
+        padding: 5px 0;
+        font-size: 100%;
+    }
+
+    .mobile-nav-icon{
+        display: inline-block;
+    }
+
+    /*Sticky-navi*/
+    .sticky .main-nav{
+        margin-top: 10px;
+    }
+
+    .sticky .main-nav li a:link,
+    .sticky .main-nav li a:visited{padding: 10px 0;}
+
+    /*--------------------------------*/
+
 
     h1{font-size: 150%;}
     h2{font-size: 120%;}

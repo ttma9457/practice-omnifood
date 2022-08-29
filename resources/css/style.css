@@ -301,6 +301,24 @@ input[type=submit]:visited{
     font-weight: bolder;
 }
 
+/*Mobile-navi kích thước nhỏ*/
+.mobile-nav-icon{
+    margin: 0 10px;
+    cursor: pointer; /*Để xuất hiển bàn tay nhỏ*/
+    display: inline;
+    float: right;
+    display: none;
+}
+
+.mobile-nav-icon img{
+    /* display: inline-block; */
+    height: 30px;
+    width: auto;
+    margin-top: 20px;
+    background-color: rgba(245, 238, 238, 0.637);
+    border-radius: 10%;
+}
+
 /*Sticky-navi*/
 .sticky .main-nav{
     margin-top: 7px;
